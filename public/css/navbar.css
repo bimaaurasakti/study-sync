@@ -1,0 +1,29 @@
+.navbar-logo .l {
+    color: #4EA8DE;
+}
+
+.navbar-logo .r {
+    color: #5E60CE;
+}
+
+.btn.profile {
+    border: none;
+}
+
+.btn.profile:active {
+    border: none;
+}
+
+.circular--portrait {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.circular--portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
