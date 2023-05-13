@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('activity_status_id');
-            $table->unsignedInteger('task_id');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('activity_status_id')->constrained('activity_statuses');
+            $table->foreignId('task_id')->constrained('tasks');
             $table->timestamps();
         });
     }

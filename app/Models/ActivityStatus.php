@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ActivityStatus extends Model
 {
     use HasFactory;
+
+    public function activity()
+    {
+        return $this->belongsTo(Activity::class);
+    }
 }
