@@ -41,6 +41,6 @@
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
 
     <!-- Custom JS -->
-    @yield('custom-css')
+    @yield('custom-js')
 </body>
 </html>

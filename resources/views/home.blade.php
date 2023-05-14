@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('custom-css')
+<link rel="stylesheet" href="{{ asset('css/custom_theme.css') }}">
 <link rel="stylesheet" href="{{ asset('css/board.css') }}">
+<link rel="stylesheet" href="{{ asset('css/dragger.css') }}">
 @endsection
 
 @section('content')
@@ -22,57 +24,77 @@
         </section>
     @else
         <section class="board">
-            <div class="row scroll-board">
-                <div class="col">
+            <div id="drag-container">
+                <div class="list">
                     <div class="card text-bg-dark mb-3">
-                        <div class="card-header fw-bold text-center">New</div>
+                        <h5 class="card-header fw-bold text-center py-4">New</h5>
                     </div>
-                    <div class="card text-bg-dark mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <div class="draggingContainer">
+                        <div class="drag-card" draggable="true">
+                            <div class="card text-bg-dark mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Dark card title 1</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card text-bg-dark mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            
+                        <div class="drag-card" draggable="true">
+                            <div class="card text-bg-dark mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Dark card title 2</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="drag-card" draggable="true">
+                            <div class="card text-bg-dark mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Dark card title 3</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col">
+            
+                <div class="list">
                     <div class="card text-bg-dark mb-3">
-                        <div class="card-header fw-bold text-center">Inprogress</div>
+                        <h5 class="card-header fw-bold text-center py-4">Inprogress</h5>
                     </div>
-                    <div class="card text-bg-dark mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <div class="draggingContainer">
+                        <div class="drag-card" draggable="true">
+                            <div class="card text-bg-dark mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Dark card title 4</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card text-bg-dark mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="drag-card" draggable="true">
+                            <div class="card text-bg-dark mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Dark card title 5</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col">
+            
+                <div class="list">
                     <div class="card text-bg-dark mb-3">
-                        <div class="card-header fw-bold text-center">Done</div>
+                        <h5 class="card-header fw-bold text-center py-4">Done</h5>
                     </div>
-                    <div class="card text-bg-dark mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                    <div class="card text-bg-dark mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <div class="draggingContainer">
+                        <div class="drag-card" draggable="true">
+                            <div class="card text-bg-dark mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Dark card title 6</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,4 +102,8 @@
         </section>
     @endif
 </div>
+@endsection
+
+@section('custom-js')
+<script src="{{ asset('js/dragger.js') }}"></script>
 @endsection

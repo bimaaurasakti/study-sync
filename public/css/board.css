@@ -15,3 +15,7 @@ html {
 .scroll-board {
     min-width: 936px;
 }
+
+.board .card-header {
+    color: #4EA8DE;
+}
