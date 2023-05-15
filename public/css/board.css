@@ -19,3 +19,58 @@ html {
 .board .card-header {
     color: #4EA8DE;
 }
+
+.board .btn.create-task {
+    background-color: #1E6F9F;
+}
+
+.board .btn.create-task.placeholder {
+    visibility: hidden;
+}
+
+.card {
+    background-color: #262626;
+}
+
+.card-body {
+    padding: 22px 30px;
+}
+
+.btn.edit {
+    border: none;
+}
+
+.btn.edit:active {
+    border: none;
+}
+
+/* Subject Color */
+.subject.ppl {
+    background-color: #9B7CAE;
+}
+.subject.pkj {
+    background-color: #D87070;
+}
+.subject.pmp {
+    background-color: #7AA373;
+}
+.subject.dw {
+    background-color: #7270D8;
+}
+
+
+/* Card Color */
+.board .card.warning {
+    background-color: #997404;
+    border-color: #FFDA69;
+}
+.board .card.danger {
+    background-color: #792C33;
+    border-color: #EA868F;
+}
+.card.warning .subject,
+.card.danger .subject
+{
+    background-color: #DBDBDB;
+    color: #6B6B6B;
+}

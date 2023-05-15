@@ -18,6 +18,10 @@
   padding-right: 42px;    
 }
 
+.list .card {
+  width: 340px;
+}
+
 #drag-container .draggingContainer .drag-card {
   width: 340px;
   border-radius: 5px;
