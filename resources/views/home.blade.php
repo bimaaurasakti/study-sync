@@ -36,12 +36,15 @@
                             <div class="card warning mb-4">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <small class="mb-0">28 March</small>
+                                        <small class="mb-0">
+                                            <i class="bi bi-exclamation-triangle me-1 text-warning"></i>
+                                            28 March
+                                        </small>
                                         <div class="btn-group">
                                             <button type="button" class="btn edit p-0" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="bi bi-three-dots h5"></i>
                                             </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
+                                            <ul class="dropdown-menu dropdown-menu-end" data-bs-autoClose="outside">
                                                 <li>
                                                     <a class="dropdown-item" href="#">
                                                         <i class="bi bi-pencil-square me-1"></i>
@@ -127,7 +130,10 @@
                             <div class="card danger mb-4">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <small class="mb-0">24 March</small>
+                                        <small class="mb-0">
+                                            <i class="bi bi-x-circle me-1 text-danger"></i>
+                                            24 March
+                                        </small>
                                         <div class="btn-group">
                                             <button type="button" class="btn edit p-0" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="bi bi-three-dots h5"></i>
@@ -171,7 +177,9 @@
             
                 <div class="list">
                     <div class="d-flex justify-content-end mb-4">
-                        <button type="button" class="btn btn-primary create-task py-2 px-3">Create New Task <i class="bi bi-plus-circle ms-1"></i></button>
+                        <button type="button" class="btn btn-primary create-task py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTaskModal">
+                            Create New Task <i class="bi bi-plus-circle ms-1"></i>
+                        </button>
                     </div>
                     <div class="card mb-4">
                         <h5 class="card-header fw-bold text-center py-4">Done</h5>
@@ -215,6 +223,10 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modals -->
+            @include('components.modals.create_task')
+            @include('components.modals.detail_task')
         </section>
     @endif
 </div>
@@ -222,4 +234,5 @@
 
 @section('custom-js')
 <script src="{{ asset('js/dragger.js') }}"></script>
+<script src="{{ asset('js/board.js') }}"></script>
 @endsection
