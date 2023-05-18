@@ -38,16 +38,9 @@
                                 Subject
                             </button>
                             <ul class="dropdown-menu">
-                                <li><button class="dropdown-item" data-subject-id="1" data-subject-initials="kj"><small>Keamanan Jaringan</small></button></li>
-                                <li><button class="dropdown-item" data-subject-id="2" data-subject-initials="dw"><small>Data Warehouse</small></button></li>
-                                <li><button class="dropdown-item" data-subject-id="3" data-subject-initials="pkj"><small>Praktikum Keamanan Jaringan</small></button></li>
-                                <li><button class="dropdown-item" data-subject-id="4" data-subject-initials="pppb"><small>Praktikum Pemrograman Perangkat Bergerak</small></button></li>
-                                <li><button class="dropdown-item" data-subject-id="5" data-subject-initials="ppl"><small>Pemodelan Perangkat Lunak</small></button></li>
-                                <li><button class="dropdown-item" data-subject-id="6" data-subject-initials="pf"><small>Pemrograman Framework</small></button></li>
-                                <li><button class="dropdown-item" data-subject-id="7" data-subject-initials="mpl"><small>Manajemen Perangkat Lunak</small></button></li>
-                                <li><button class="dropdown-item" data-subject-id="8" data-subject-initials="pmb"><small>Praktikum Mesin Pembelajaran</small></button></li>
-                                <li><button class="dropdown-item" data-subject-id="9" data-subject-initials="ppb"><small>Pemrograman Perangkat Bergerak</small></button></li>
-                                <li><button class="dropdown-item" data-subject-id="10" data-subject-initials="pppl"><small>Praktikum Pemodelan Perangkat Lunak</small></button></li>
+                                @foreach ($subjects as $subject)
+                                    <li><button class="dropdown-item" data-subject-id="{{ $subject->id }}" data-subject-initials="{{ $subject->initials }}"><small>{{ $subject->name }}</small></button></li>
+                                @endforeach
                             </ul>
                             <input id="inputSubject" class="d-none" type="text" name="subject">
                         </div>                                      
