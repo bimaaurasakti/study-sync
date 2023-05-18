@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm bg-body-tertiary py-3">
+<nav class="navbar bg-body-tertiary py-3">
     <div class="container-fluid px-4">
         <a class="navbar-brand me-auto" href="{{ route('home') }}">
             <h3 class="navbar-logo align-middle fw-bold mb-0">
@@ -6,35 +6,37 @@
                 <span class="l">Study</span><span class="r">Sync</span>
             </h3>
         </a>
-        <button class="navbar-toggler menu border border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>       
-
-        @if (auth()->guest())
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link me-2" href="{{ route('login') }}">
-                            Login
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">
-                            Register
-                        </a>
-                    </li>
-                </ul>
+        <button class="navbar-toggler menu border border-0 p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            @if (auth()->guest())
+                <span class="navbar-toggler-icon"></span>
+            @else
+                <div class="circular--portrait">
+                    <img src="{{ asset('images/profile.jpg') }}" />
+                </div>
+            @endif
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-        @else
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-lg-0">
-                    <li class="nav-item dropdown d-none d-sm-block">
-                        <button type="button" class="btn profile rouded-circle p-0" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="circular--portrait">
-                                <img src="{{ asset('images/profile.jpg') }}" />
-                            </div>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end mt-4 p-1">
+            <div class="offcanvas-body">
+                @if (auth()->guest())
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link me-2" href="{{ route('login') }}">
+                                Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">
+                                Register
+                            </a>
+                        </li>
+                    </ul>
+                @else
+                    <ul class="navbar-nav">
+                        <li>
                             <a class="nav-link text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
@@ -42,19 +44,10 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
-                        </div>
-                    </li>
-                    <li class="d-sm-none">
-                        <a class="nav-link text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                        
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                @endif
             </div>
-        @endif
+        </div>
     </div>
 </nav>
