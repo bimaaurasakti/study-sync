@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Auth::routes(); 
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-    Route::post('/tasks', [HomeController::class, 'storeTask'])->name('tasks.store');
-    Route::match(['put', 'patch'], '{id}', [ItemCategoryController::class, 'update'])->name('.update');
+    Route::prefix('tasks')->name('tasks')->group(function() {
+        Route::post('/', [TaskController::class, 'store'])->name('.store');
+        Route::match(['put', 'patch'], '{id}', [TaskController::class, 'update'])->name('.update');
+    });
 });

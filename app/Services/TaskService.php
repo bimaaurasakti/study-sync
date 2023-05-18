@@ -7,7 +7,8 @@ use App\Models\Task;
 
 class TaskService
 {
-    public function store(TaskRequest $request){
+    public function store(TaskRequest $request)
+    {
         Task::create([
             'subject_id' => $request->subject,
             'due_date' => $request->due_date,
