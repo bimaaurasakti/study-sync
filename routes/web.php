@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Auth::routes(); 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::post('/tasks', [HomeController::class, 'storeTask'])->name('tasks.store');
+    Route::match(['put', 'patch'], '{id}', [ItemCategoryController::class, 'update'])->name('.update');
+});

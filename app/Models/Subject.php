@@ -18,4 +18,9 @@ class Subject extends Model
         'name',
         'initials',
     ];
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

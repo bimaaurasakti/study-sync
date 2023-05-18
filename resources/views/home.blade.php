@@ -225,8 +225,8 @@
             </div>
 
             <!-- Modals -->
-            @include('components.modals.create_task')
-            @include('components.modals.detail_task')
+            @include('components.modals.create-task')
+            @include('components.modals.detail-task')
         </section>
     @endif
 </div>

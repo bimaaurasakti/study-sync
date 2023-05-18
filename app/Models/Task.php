@@ -15,13 +15,19 @@ class Task extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'subject',
+        'subject_id',
         'due_date',
+        'title',
+        'description',
     ];
 
     public function activities()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Task::class);
     }
 }
