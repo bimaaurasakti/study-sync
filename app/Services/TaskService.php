@@ -16,4 +16,14 @@ class TaskService
             'description' => $request->description,
         ]);
     }
+
+    public function update(TaskRequest $request)
+    {
+        $item = Task::find($request->id);
+        $item->subject_id = $request->subject_id;
+        $item->due_date = $request->due_date;
+        $item->title = $request->title;
+        $item->description = $request->description;
+        $item->save();
+    }
 }

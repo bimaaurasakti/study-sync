@@ -1,4 +1,4 @@
-<nav class="navbar bg-body-tertiary py-3">
+<nav class="navbar bg-body-tertiary py-3 position-relative">
     <div class="container-fluid px-4">
         <a class="navbar-brand me-auto" href="{{ route('home') }}">
             <h3 class="navbar-logo align-middle fw-bold mb-0">

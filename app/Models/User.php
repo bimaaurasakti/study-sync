@@ -48,6 +48,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = [
+        'role',
+    ];
+
     public function role()
     {
         return $this->belongsTo(Role::class);
@@ -60,6 +69,6 @@ class User extends Authenticatable
 
     public function getRoleNameAttribute()
     {
-        return $this->role()->first()->name;
+        return $this->role->name;
     }
 }

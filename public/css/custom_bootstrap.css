@@ -58,4 +58,6 @@
     --bs-form-valid-border-color: #75b798;
     --bs-form-invalid-color: #ea868f;
     --bs-form-invalid-border-color: #ea868f; */
+    --bs-success-rgb: 0, 204, 153;
+    --bs-danger-rgb:235, 87, 87;
 }

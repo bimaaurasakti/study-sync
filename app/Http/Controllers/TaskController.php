@@ -18,9 +18,19 @@ class TaskController extends Controller
     {
         try {
             $this->taskService->store($request);
-            return redirect()->route('items.index')->with('success', 'Item created successfully.');
+            return redirect()->route('home')->with('success', 'Task created successfully.');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('failed', 'Something when wrong.');
+            return redirect()->route('home')->with('failed', 'Something when wrong.');
+        }
+    }
+
+    public function update(TaskRequest $request)
+    {
+        try {
+            $this->taskService->update($request);
+            return redirect()->route('home')->with('success', 'Task updated successfully.');
+        } catch (\Throwable $th) {
+            return redirect()->route('home')->with('failed', 'Something when wrong.');
         }
     }
 }

@@ -12,7 +12,9 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $newTasks = Task::orderBy('due_date')->get();
         $subjects = Subject::get();
-        return view('home', compact('subjects'));
+
+        return view('home', compact('subjects', 'newTasks'));
     }
 }
