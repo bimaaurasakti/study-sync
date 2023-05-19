@@ -2,27 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskRequest;
+use App\Models\Subject;
+use App\Models\Task;
+use App\Services\TaskService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+        $newTasks = Task::orderBy('due_date')->get();
+        $subjects = Subject::get();
+
+        return view('home', compact('subjects', 'newTasks'));
     }
 }

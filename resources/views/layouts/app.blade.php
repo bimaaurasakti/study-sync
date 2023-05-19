@@ -26,14 +26,22 @@
     <link rel="stylesheet" href="{{ asset('css/custom_bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toast.css') }}">
     @yield('custom-css')
 </head>
 <body>
     <div id="app">
         @include('components.navbar')
 
-        <main class="py-4">
+        <main class="py-4 position-relative ">
             @yield('content')
+
+            @if(session()->has('success'))
+                <x-toast status='success' message='{{ session("success") }}' />
+            @elseif(session()->has('failed'))   
+                <x-toast status='failed' message='{{ session("failed") }}' />
+            @endif
+            
         </main>
     </div>
 
@@ -46,6 +54,10 @@
 
     <!-- Lordicon -->
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+
+    @if(session()->has('success') || session()->has('failed'))
+        <script src="{{ asset('js/toast.js') }}"></script>
+    @endif
 
     <!-- Custom JS -->
     @yield('custom-js')
