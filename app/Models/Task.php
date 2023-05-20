@@ -42,11 +42,6 @@ class Task extends Model
         return $this->belongsTo(Subject::class);
     }
 
-    public function getSubjectNameAttribute()
-    {
-        return $this->subject->name ?? '';
-    }
-
     public function getFormattedDueDateAttribute()
     {
         if (!isset($this->due_date)) {
@@ -81,7 +76,7 @@ class Task extends Model
         return $formattedDueDate;
     }
 
-    public function getDayDiffFromDueDateAttribute()
+    public function getHoursDiffFromDueDateAttribute()
     {
         if (!isset($this->due_date)) {
             return null;
@@ -99,7 +94,7 @@ class Task extends Model
         $dueDate = Carbon::parse($this->due_date);
         $diffInHours = $now->diffInHours($dueDate, false);
 
-        if ($diffInHours < 0) {
+        if ($diffInHours < 1) {
             return 'danger';
         } elseif ($diffInHours < 96) {
             return 'warning';

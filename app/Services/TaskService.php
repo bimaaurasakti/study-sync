@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\TaskRequest;
 use App\Models\Task;
+use Carbon\Carbon;
 
 class TaskService
 {
@@ -21,7 +22,7 @@ class TaskService
     {
         $item = Task::find($request->id);
         $item->subject_id = $request->subject_id;
-        $item->due_date = $request->due_date;
+        $item->due_date = Carbon::parse($request->due_date);
         $item->title = $request->title;
         $item->description = $request->description;
         $item->save();
