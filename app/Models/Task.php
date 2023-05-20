@@ -42,11 +42,6 @@ class Task extends Model
         return $this->belongsTo(Subject::class);
     }
 
-    public function getSubjectNameAttribute()
-    {
-        return $this->subject->name ?? '';
-    }
-
     public function getFormattedDueDateAttribute()
     {
         if (!isset($this->due_date)) {
