@@ -99,7 +99,7 @@ class Task extends Model
         $dueDate = Carbon::parse($this->due_date);
         $diffInHours = $now->diffInHours($dueDate, false);
 
-        if ($diffInHours < 0) {
+        if ($diffInHours < 1) {
             return 'danger';
         } elseif ($diffInHours < 96) {
             return 'warning';
