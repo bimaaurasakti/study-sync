@@ -56,7 +56,7 @@
                         </div>  
                         <div class="col py-2">
                             <div class="input-group">
-                                <textarea class="form-control-plaintext p-0" name="decription" id="inputDescription" cols="30" rows="8" placeholder="Empty"></textarea>
+                                <textarea class="form-control-plaintext p-0" name="description" id="inputDescription" cols="30" rows="8" placeholder="Empty"></textarea>
                             </div>  
                         </div>
                     </div>

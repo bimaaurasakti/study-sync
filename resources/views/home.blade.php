@@ -38,10 +38,10 @@
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <small class="mb-0">
-                                                @if ($newTask->dayDiffFromDueDate < 0)
+                                                @if ($newTask->hoursDiffFromDueDate < 0)
                                                     <i class="bi bi-x-circle me-1 text-danger"></i>
-                                                @elseif ($newTask->dayDiffFromDueDate < 4)
-                                                    <i class="bi bi-exclamation-triangle me-1 text-{{ $newTask->cardClass }}"></i>
+                                                @elseif ($newTask->hoursDiffFromDueDate < 96)
+                                                    <i class="bi bi-exclamation-triangle me-1 text-warning"></i>
                                                 @endif
                                                 {{ $newTask->formattedDueDate }}
                                             </small>

@@ -81,7 +81,7 @@ class Task extends Model
         return $formattedDueDate;
     }
 
-    public function getDayDiffFromDueDateAttribute()
+    public function getHoursDiffFromDueDateAttribute()
     {
         if (!isset($this->due_date)) {
             return null;
