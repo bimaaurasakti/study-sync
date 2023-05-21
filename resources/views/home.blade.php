@@ -71,7 +71,7 @@
                                         <p class="card-description mb-3">{{ $newTask->description }}</p>
                                         <div class="d-flex">
                                             <div class="subject {{ $newTask->subject->initials ?? 'none' }} px-2 py-1 rounded-3 {{ isset($newTask->subject) ? '' : 'd-none' }}">
-                                                <small class="card-subject" data-subject-initials="{{ $newTask->subject->initials ?? 'none' }}">{{ $newTask->subject->name ?? 'S            ubject' }}</small>
+                                                <small class="card-subject" data-subject-initials="{{ $newTask->subject->initials ?? 'none' }}">{{ $newTask->subject->name ?? 'Subject' }}</small>
                                             </div>
                                         </div>
                                     </div>

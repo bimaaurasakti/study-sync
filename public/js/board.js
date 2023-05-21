@@ -22,10 +22,11 @@ $(document).ready(function() {
         detailCardModal.find('#inputSubject').val(taskSubjectId)
 
         var form = detailCardModal.find('form')
-        var urlObject = new URL(form.attr('action'));
-
-        urlObject.pathname = urlObject.pathname.replace(urlObject.pathname, '/tasks/' + taskId);
-        form.attr('action', urlObject.href)
+        if (form.attr('action')) {
+            var urlObject = new URL(form.attr('action'));
+            urlObject.pathname = urlObject.pathname.replace(urlObject.pathname, '/tasks/' + taskId);
+            form.attr('action', urlObject.href)
+        }
         
         var detailSubjectBox = detailCardModal.find('.btn.subject')
         var subjectBoxClassList = subjectBox.attr("class").split(/\s+/)
