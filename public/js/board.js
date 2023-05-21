@@ -2,16 +2,17 @@ $(document).ready(function() {
     var taskCard = $('.drag-card .card')
     var detailCardModal = $('#detailTaskModal')
     var taskEditButton = $('.card .btn.edit')
-    var buttonInputSubject = $('.btn-input-subject button.btn.dropdown-toggle')
     var buttonDropdownSubject = $('.btn-input-subject button.dropdown-item')
-    var inputSubject = $('#inputSubject')
+    var buttonDeleteTask = $('.button-delete-task')
 
     taskCard.click(function() {
+        var taskId = $(this).data('id')
         var taskTitle = $(this).find('.card-title').text()
         var taskDescription = $(this).find('.card-description').text()
         var taskDueDate = $(this).data('due-date')
         var taskStatus = $(this).data('status')
         var taskSubject = $(this).find('.card-subject').text()
+        var taskSubjectId = $(this).data('subject-id')
         var subjectBox = $(this).find('.subject')
 
         detailCardModal.find('#inputTitle').val(taskTitle)
@@ -19,6 +20,14 @@ $(document).ready(function() {
         detailCardModal.find('#inputDate').val(taskDueDate)
         detailCardModal.find('#inputDescription').val(taskDescription)
         detailCardModal.find('.btn.subject').text(taskSubject) 
+        detailCardModal.find('#inputSubject').val(taskSubjectId)
+
+        var form = detailCardModal.find('form')
+        if (form.attr('action')) {
+            var urlObject = new URL(form.attr('action'));
+            urlObject.pathname = urlObject.pathname.replace(urlObject.pathname, '/tasks/' + taskId);
+            form.attr('action', urlObject.href)
+        }
         
         var detailSubjectBox = detailCardModal.find('.btn.subject')
         var subjectBoxClassList = subjectBox.attr("class").split(/\s+/)
@@ -47,7 +56,7 @@ $(document).ready(function() {
         event.preventDefault()
 
         var buttonChangeSubject = $(this).closest('.btn-input-subject').find('.btn.subject')
-        console.log(buttonChangeSubject)
+        var inputSubject = $(this).closest('.btn-input-subject').find('#inputSubject')
         buttonChangeSubject.text($(this).text())
         inputSubject.val($(this).data('subject-id'))
 
@@ -56,5 +65,9 @@ $(document).ready(function() {
 
         buttonInputSubjectClassList[2] = $(this).data('subject-initials')
         buttonChangeSubject.addClass(buttonInputSubjectClassList.join(' '))
+    })
+
+    buttonDeleteTask.click(function(event) {
+        event.stopPropagation()
     })
 });

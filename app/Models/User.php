@@ -4,14 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Observers\UserObserver;
 use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Str;
-use Ramsey\Uuid\Uuid as UuidUuid;
 
 class User extends Authenticatable
 {
