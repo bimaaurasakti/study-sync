@@ -27,7 +27,6 @@ class TaskController extends Controller
     public function update(TaskRequest $request, $id)
     {
         try {
-
             $this->taskService->update($request, $id);
             return redirect()->route('home')->with('success', 'Task updated successfully.');
         } catch (\Throwable $th) {
