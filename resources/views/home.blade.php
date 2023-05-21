@@ -24,7 +24,7 @@
     @else
         <section class="board">
             <div id="drag-container">
-                <div class="list">
+                <div class="list" data-container-status-id="1">
                     <div class="d-flex justify-content-end mb-4">
                         <button type="button" class="btn create-task placeholder py-2 px-3">x</button>
                     </div>
@@ -34,58 +34,13 @@
                     <div class="draggingContainer">
                         @foreach ($newTasks as $newTask)
                             <div class="drag-card" draggable="true">
-                                <div class="card {{ $newTask->cardClass }} mb-4" data-status="new" data-due-date="{{ $newTask->due_date }}" data-subject-id="{{ $newTask->subject->id ?? 0 }}" data-id="{{ $newTask->id }}">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <small class="card-due-date mb-0">
-                                                @if ($newTask->hoursDiffFromDueDate < 1)
-                                                    <i class="bi bi-x-circle me-1 text-danger"></i>
-                                                @elseif ($newTask->hoursDiffFromDueDate < 96)
-                                                    <i class="bi bi-exclamation-triangle me-1 text-warning"></i>
-                                                @endif
-                                                {{ $newTask->formattedDueDate }}
-                                            </small>
-                                            @if (auth()->user()->roleName == 'admin')
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn edit p-0" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <i class="bi bi-three-dots h5"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu dropdown-menu-end" data-bs-autoClose="outside">
-                                                        <li>
-                                                            <button class="dropdown-item" href="#">
-                                                                <i class="bi bi-pencil-square me-1"></i>
-                                                                Edit
-                                                            </button>
-                                                        </li>
-                                                        <li>
-                                                            <form action="{{ route('tasks.destroy', ['id' => $newTask->id]) }}" method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button class="dropdown-item button-delete-task" type="submit">
-                                                                    <i class="bi bi-x-square me-1"></i>
-                                                                    Delete
-                                                                </button>
-                                                            </form>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <h5 class="card-title fw-bold mb-3">{{ $newTask->title ?? 'Untitled' }}</h5>
-                                        <p class="card-description mb-3">{{ $newTask->description }}</p>
-                                        <div class="d-flex">
-                                            <div class="subject {{ $newTask->subject->initials ?? 'none' }} px-2 py-1 rounded-3 {{ isset($newTask->subject) ? '' : 'd-none' }}">
-                                                <small class="card-subject" data-subject-initials="{{ $newTask->subject->initials ?? 'none' }}">{{ $newTask->subject->name ?? 'Subject' }}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <x-cards.task :task="$newTask" />
                             </div>
                         @endforeach
                     </div>
                 </div>
             
-                <div class="list">
+                <div class="list" data-container-status-id="2">
                     <div class="d-flex justify-content-end mb-4">
                         <div type="button" class="btn create-task placeholder py-2 px-3">x</div>
                     </div>
@@ -93,11 +48,15 @@
                         <h5 class="card-header fw-bold text-center py-4">Inprogress</h5>
                     </div>
                     <div class="draggingContainer">
-
+                        @foreach ($inprogressTasks as $inprogressTask)
+                            <div class="drag-card" draggable="true">
+                                <x-cards.task :task="$inprogressTask" />
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             
-                <div class="list">
+                <div class="list" data-container-status-id="3">
                     <div class="d-flex justify-content-end mb-4">
                         @if (auth()->user()->roleName == 'admin')
                             <button type="button" class="btn btn-primary create-task py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTaskModal">
@@ -111,9 +70,19 @@
                         <h5 class="card-header fw-bold text-center py-4">Done</h5>
                     </div>
                     <div class="draggingContainer">
-
+                        @foreach ($doneTasks as $doneTask)
+                            <div class="drag-card" draggable="true">
+                                <x-cards.task :task="$doneTask" />
+                            </div>
+                        @endforeach
                     </div>
                 </div>
+
+                <form id="updateTaskStatus" action="POST">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" id="activityStatusId" name="activity_status_id">
+                </form>
             </div>
 
             <!-- Modals -->

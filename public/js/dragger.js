@@ -1,46 +1,67 @@
-let cards = document.querySelectorAll('.drag-card');
-let lists = document.querySelectorAll('.list');
+$(document).ready(function() {
+    let cards = $('.drag-card');
+    let lists = $('.list');
+    var lastDraggedCard
 
+    cards.each(function() {
+        registerEventsOnCard($(this));
+    });
 
-cards.forEach((card) => { 
-    registerEventsOnCard(card);
-});
-
-lists.forEach((list) => {
-    list.addEventListener('dragover', (e)=>{
+    lists.on('dragover', function(e) {
         e.preventDefault();
-        let draggingCard = document.querySelector('.dragging');
-        let cardAfterDraggingCard = getCardAfterDraggingCard(list, e.clientY);
+        let draggingCard = $('.dragging');
+        let cardAfterDraggingCard = getCardAfterDraggingCard($(this), e.clientY);
 
-        if(cardAfterDraggingCard) {
-            cardAfterDraggingCard.parentNode.insertBefore(draggingCard, cardAfterDraggingCard);
+        if (cardAfterDraggingCard) {
+            draggingCard.insertBefore(cardAfterDraggingCard);
         } else {
-            list.querySelector('.draggingContainer').appendChild(draggingCard);
+            $(this).find('.draggingContainer').append(draggingCard);
         }
     });
-});
 
-function getCardAfterDraggingCard(list, yDraggingCard){
-    let listCards = [...list.querySelectorAll('.drag-card:not(.dragging)')];
+    lists.on('dragend', function(event) {
+        event.preventDefault()
 
-    return listCards.reduce((closestCard, nextCard)=>{
-        let nextCardRect = nextCard.getBoundingClientRect();
-        let offset = yDraggingCard - nextCardRect.top - nextCardRect.height / 2;
+        let taskId = lastDraggedCard.find('.card').data('id');
+        let activityStatusId = $(this).data('container-status-id');
+        let form = $('#updateTaskStatus')
+        form.find('#activityStatusId').val(activityStatusId)
+        
+        console.log(form.find('#activityStatusId').val())
 
-        if(offset < 0 && offset > closestCard.offset) {
-            return {offset, element: nextCard}
-        } else {
-            return closestCard;
-        }
-    }, {offset: Number.NEGATIVE_INFINITY}).element;
-}
-
-function registerEventsOnCard(card){
-    card.addEventListener('dragstart', (e) => {
-        card.classList.add('dragging');
+        $.ajax({
+            url: "/activities/" + taskId,   
+            method: 'POST',
+            data: form.serialize(),
+            success: function( result ) {
+                console.log('success')
+            }
+        })
     });
-    
-    card.addEventListener('dragend', (e) => {
-        card.classList.remove('dragging');
-    });
-}
+
+    function getCardAfterDraggingCard(list, yDraggingCard) {
+        let listCards = list.find('.drag-card:not(.dragging)');
+
+        return listCards.toArray().reduce(function(closestCard, nextCard) {
+            let nextCardRect = nextCard.getBoundingClientRect();
+            let offset = yDraggingCard - nextCardRect.top - nextCardRect.height / 2;
+
+            if (offset < 0 && offset > closestCard.offset) {
+                return { offset: offset, element: nextCard };
+            } else {
+                return closestCard;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    function registerEventsOnCard(card) {
+        card.on('dragstart', function() {
+            card.addClass('dragging');
+            lastDraggedCard = $(this)
+        });
+
+        card.on('dragend', function() {
+            card.removeClass('dragging');
+        });
+    }
+})
