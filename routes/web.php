@@ -24,5 +24,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::prefix('tasks')->name('tasks')->group(function() {
         Route::post('/', [TaskController::class, 'store'])->name('.store');
         Route::match(['put', 'patch'], '{id}', [TaskController::class, 'update'])->name('.update');
+        Route::delete('{id}', [TaskController::class, 'destroy'])->name('.destroy');
     });
 });

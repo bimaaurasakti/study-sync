@@ -52,16 +52,20 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end" data-bs-autoClose="outside">
                                                         <li>
-                                                            <a class="dropdown-item" href="#">
+                                                            <button class="dropdown-item" href="#">
                                                                 <i class="bi bi-pencil-square me-1"></i>
                                                                 Edit
-                                                            </a>
+                                                            </button>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item" href="#">
-                                                                <i class="bi bi-x-square me-1"></i>
-                                                                Delete
-                                                            </a>
+                                                            <form action="{{ route('tasks.destroy', ['id' => $newTask->id]) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="dropdown-item button-delete-task" type="submit">
+                                                                    <i class="bi bi-x-square me-1"></i>
+                                                                    Delete
+                                                                </button>
+                                                            </form>
                                                         </li>
                                                     </ul>
                                                 </div>

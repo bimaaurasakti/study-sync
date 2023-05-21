@@ -3,6 +3,7 @@ $(document).ready(function() {
     var detailCardModal = $('#detailTaskModal')
     var taskEditButton = $('.card .btn.edit')
     var buttonDropdownSubject = $('.btn-input-subject button.dropdown-item')
+    var buttonDeleteTask = $('.button-delete-task')
 
     taskCard.click(function() {
         var taskId = $(this).data('id')
@@ -64,5 +65,9 @@ $(document).ready(function() {
 
         buttonInputSubjectClassList[2] = $(this).data('subject-initials')
         buttonChangeSubject.addClass(buttonInputSubjectClassList.join(' '))
+    })
+
+    buttonDeleteTask.click(function(event) {
+        event.stopPropagation()
     })
 });

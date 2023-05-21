@@ -27,4 +27,10 @@ class TaskService
         $item->description = $request->description;
         $item->save();
     }
+
+    public function delete(string $id)
+    {
+        $item = Task::find($id);
+        $item->delete();
+    }
 }

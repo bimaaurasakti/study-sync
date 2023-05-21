@@ -61,3 +61,7 @@
     --bs-success-rgb: 0, 204, 153;
     --bs-danger-rgb:235, 87, 87;
 }
+
+.dropdown-menu {
+    --bs-dropdown-link-active-bg: #1E6F9F;
+}
