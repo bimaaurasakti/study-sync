@@ -34,7 +34,7 @@
                     <div class="draggingContainer">
                         @foreach ($newTasks as $newTask)
                             <div class="drag-card" draggable="true">
-                                <div class="card {{ $newTask->cardClass }} mb-4" data-status="new" data-due-date="{{ $newTask->due_date }}">
+                                <div class="card {{ $newTask->cardClass }} mb-4" data-status="new" data-due-date="{{ $newTask->due_date }}" data-subject-id="{{ $newTask->subject->id ?? 0 }}" data-id="{{ $newTask->id }}">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <small class="card-due-date mb-0">
@@ -70,11 +70,9 @@
                                         <h5 class="card-title fw-bold mb-3">{{ $newTask->title ?? 'Untitled' }}</h5>
                                         <p class="card-description mb-3">{{ $newTask->description }}</p>
                                         <div class="d-flex">
-                                            @isset($newTask->subject)
-                                                <div class="subject {{ $newTask->subject->initials }} px-2 py-1 rounded-3">
-                                                    <small class="card-subject" data-subject-initials="{{ $newTask->subject->initials }}">{{ $newTask->subject->name }}</small>
-                                                </div>
-                                            @endisset
+                                            <div class="subject {{ $newTask->subject->initials ?? 'none' }} px-2 py-1 rounded-3 {{ isset($newTask->subject) ? '' : 'd-none' }}">
+                                                <small class="card-subject" data-subject-initials="{{ $newTask->subject->initials ?? 'none' }}">{{ $newTask->subject->name ?? 'S            ubject' }}</small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

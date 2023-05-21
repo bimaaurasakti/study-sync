@@ -5,7 +5,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-5 pt-4 pb-5">
-                <form action="{{ route('tasks.store') }}" method="POST">
+                <form action="{{ route('tasks.update', ['id' => 'none']) }}" method="POST">
                     @csrf
                     @method('PATCH')
 
@@ -46,7 +46,7 @@
                                         <li><button class="dropdown-item" data-subject-id="{{ $subject->id }}" data-subject-initials="{{ $subject->initials }}"><small>{{ $subject->name }}</small></button></li>
                                     @endforeach
                                 </ul>
-                                <input id="inputSubject" class="d-none" type="text" name="subject">
+                                <input id="inputSubject" class="d-none" type="text" name="subject_id">
                             </div>                                      
                         </div>
                     </div>

@@ -24,12 +24,14 @@ class TaskController extends Controller
         }
     }
 
-    public function update(TaskRequest $request)
+    public function update(TaskRequest $request, $id)
     {
         try {
-            $this->taskService->update($request);
+            
+            $this->taskService->update($request, $id);
             return redirect()->route('home')->with('success', 'Task updated successfully.');
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             return redirect()->route('home')->with('failed', 'Something when wrong.');
         }
     }

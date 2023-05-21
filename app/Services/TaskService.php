@@ -18,9 +18,9 @@ class TaskService
         ]);
     }
 
-    public function update(TaskRequest $request)
+    public function update(TaskRequest $request, $id)
     {
-        $item = Task::find($request->id);
+        $item = Task::find($id);
         $item->subject_id = $request->subject_id;
         $item->due_date = Carbon::parse($request->due_date);
         $item->title = $request->title;
