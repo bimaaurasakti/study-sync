@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->foreignId('activity_status_id')->constrained('activity_statuses');
-            $table->uuid('task_id');
+            $table->uuid('task_id')->onDelete("cascade");
             $table->timestamps();
         });
     }

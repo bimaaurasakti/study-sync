@@ -10,7 +10,7 @@ $(document).ready(function() {
         var taskTitle = $(this).find('.card-title').text()
         var taskDescription = $(this).find('.card-description').text()
         var taskDueDate = $(this).data('due-date')
-        var taskStatus = $(this).data('status')
+        var taskStatus = $(this).closest('.list').data('container-status')
         var taskSubject = $(this).find('.card-subject').text()
         var taskSubjectId = $(this).data('subject-id')
         var subjectBox = $(this).find('.subject')

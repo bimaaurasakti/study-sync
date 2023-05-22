@@ -24,7 +24,7 @@
     @else
         <section class="board">
             <div id="drag-container">
-                <div class="list" data-container-status-id="1">
+                <div class="list" data-container-status-id="1" data-container-status="new">
                     <div class="d-flex justify-content-end mb-4">
                         <button type="button" class="btn create-task placeholder py-2 px-3">x</button>
                     </div>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             
-                <div class="list" data-container-status-id="2">
+                <div class="list" data-container-status-id="2" data-container-status="inprogress">
                     <div class="d-flex justify-content-end mb-4">
                         <div type="button" class="btn create-task placeholder py-2 px-3">x</div>
                     </div>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             
-                <div class="list" data-container-status-id="3">
+                <div class="list" data-container-status-id="3" data-container-status="done">
                     <div class="d-flex justify-content-end mb-4">
                         @if (auth()->user()->roleName == 'admin')
                             <button type="button" class="btn btn-primary create-task py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTaskModal">

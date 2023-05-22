@@ -27,6 +27,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::match(['put', 'patch'], '{id}', [TaskController::class, 'update'])->name('.update');
         Route::delete('{id}', [TaskController::class, 'destroy'])->name('.destroy');
     });
+});
+
+Route::middleware(['auth', 'user-access:admin,member'])->group(function () {
     Route::prefix('activities')->name('activities')->group(function() {
         Route::match(['put', 'patch'], '{id}', [ActivityController::class, 'createOrUpdate'])->name('.create-or-update');
     });

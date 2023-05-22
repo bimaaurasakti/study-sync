@@ -20,9 +20,9 @@ class TaskService
 
     public function update(TaskRequest $request, $id)
     {
-        $item = Task::find($id);
+        $item = Task::findOrFail($id);
         $item->subject_id = $request->subject_id;
-        $item->due_date = Carbon::parse($request->due_date);
+        $item->due_date = $request->due_date ? Carbon::parse($request->due_date) : null;
         $item->title = $request->title;
         $item->description = $request->description;
         $item->save();
@@ -30,7 +30,7 @@ class TaskService
 
     public function delete(string $id)
     {
-        $item = Task::find($id);
+        $item = Task::findOrFail($id);
         $item->delete();
     }
 }

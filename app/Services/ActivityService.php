@@ -9,7 +9,7 @@ class ActivityService
 {
     public function createOrUpdate(ActivityRequest $request, $taskId)
     {
-        $activity = Activity::where('task_id', $taskId)->first();
+        $activity = Activity::where('task_id', $taskId)->where('user_id', auth()->user()->id)->first();
         if (!$activity) {
             $activity = Activity::create([
                 'user_id' => auth()->user()->id,

@@ -22,7 +22,18 @@ class TaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'subject_id' => 'exists:subjects,id',
+            'subject_id' => 'sometimes|nullable|exists:subjects,id',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $modifiedData = $this->all();
+        if (isset($modifiedData['subject_id'])) {
+            if (!$modifiedData['subject_id']) {
+                unset($modifiedData['subject_id']);
+            }
+        }
+        $this->replace($modifiedData);
     }
 }

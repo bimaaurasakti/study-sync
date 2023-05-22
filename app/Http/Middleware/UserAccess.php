@@ -13,9 +13,9 @@ class UserAccess
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $userRole): Response
+    public function handle(Request $request, Closure $next, ...$allowedRoles): Response
     {
-        if(auth()->user()->roleName == $userRole){
+        if(in_array(auth()->user()->roleName, $allowedRoles)){
             return $next($request);
         }
         return response()->json(['You do not have permission to access for this page.']);
