@@ -47,6 +47,11 @@ html {
     transition: 0.3s ease-in-out;
 }
 
+.modal-body .flex-column:hover {
+    background-color: inherit;
+    border-radius: inherit;
+}
+
 #inputTitle {
     font-size: 28px;
     font-weight: 700;

@@ -89,6 +89,7 @@
             @include('components.modals.create-task')
             @if (auth()->user()->roleName == 'admin')
                 @include('components.modals.editable-detail-task')
+                @include('components.modals.delete-task-alert')
             @else
                 @include('components.modals.detail-task')
             @endif

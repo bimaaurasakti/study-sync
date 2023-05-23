@@ -28,14 +28,10 @@
                                 </button>
                             </li>
                             <li>
-                                <form action="{{ route('tasks.destroy', ['id' => $task->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="dropdown-item button-delete-task" type="submit">
-                                        <i class="bi bi-x-square me-1"></i>
-                                        Delete
-                                    </button>
-                                </form>
+                                <button class="button-delete-task dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteTaskAlert">
+                                    <i class="bi bi-x-square me-1"></i>
+                                    Delete
+                                </button>
                             </li>
                         </ul>
                     </div>
