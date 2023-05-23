@@ -96,9 +96,12 @@ $(document).ready(function() {
         if (cardStatusType == 'danger') {
             lateIcon.removeClass('d-none')
             warningIcon.addClass('d-none')
-        } else {
+        } else if (cardStatusType == 'warning') {
             lateIcon.addClass('d-none')
             warningIcon.removeClass('d-none')
+        } else {
+            lateIcon.addClass('d-none')
+            warningIcon.addClass('d-none')
         }
     }
 })
