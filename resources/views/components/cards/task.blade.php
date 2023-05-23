@@ -1,12 +1,17 @@
 <div>
-    <div class="card {{ $task->cardClass }} mb-4" data-status="new" data-due-date="{{ $task->due_date }}" data-subject-id="{{ $task->subject->id ?? 0 }}" data-id="{{ $task->id }}">
+    <div class="card {{ $boardStatus == 'done' ? 'none' : $task->CardStatusType }} mb-4" data-card-status-type="{{ $task->CardStatusType }}" data-due-date="{{ $task->due_date }}" data-subject-id="{{ $task->subject->id ?? 0 }}" data-id="{{ $task->id }}">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <small class="card-due-date mb-0">
-                    @if ($task->hoursDiffFromDueDate < 1)
+                    @if ($task->hoursDiffFromDueDate < 1 && $boardStatus != 'done')
                         <i class="bi bi-x-circle me-1 text-danger"></i>
-                    @elseif ($task->hoursDiffFromDueDate < 96)
+                        <i class="bi bi-exclamation-triangle me-1 text-warning d-none"></i>
+                    @elseif ($task->hoursDiffFromDueDate < 96 && $boardStatus != 'done')
+                        <i class="bi bi-x-circle me-1 text-danger d-none"></i>
                         <i class="bi bi-exclamation-triangle me-1 text-warning"></i>
+                    @else
+                        <i class="bi bi-x-circle me-1 text-danger d-none"></i>
+                        <i class="bi bi-exclamation-triangle me-1 text-warning d-none"></i>
                     @endif
                     {{ $task->formattedDueDate }}
                 </small>
