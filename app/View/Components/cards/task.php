@@ -13,7 +13,8 @@ class task extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public ModelsTask $task
+        public ModelsTask $task,
+        public string $boardStatus
     ) {}
 
     /**

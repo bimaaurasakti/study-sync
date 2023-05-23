@@ -34,7 +34,7 @@
                     <div class="draggingContainer">
                         @foreach ($newTasks as $newTask)
                             <div class="drag-card" draggable="true">
-                                <x-cards.task :task="$newTask" />
+                                <x-cards.task :task="$newTask" boardStatus="new" />
                             </div>
                         @endforeach
                     </div>
@@ -50,7 +50,7 @@
                     <div class="draggingContainer">
                         @foreach ($inprogressTasks as $inprogressTask)
                             <div class="drag-card" draggable="true">
-                                <x-cards.task :task="$inprogressTask" />
+                                <x-cards.task :task="$inprogressTask" boardStatus="inprogress" />
                             </div>
                         @endforeach
                     </div>
@@ -72,7 +72,7 @@
                     <div class="draggingContainer">
                         @foreach ($doneTasks as $doneTask)
                             <div class="drag-card" draggable="true">
-                                <x-cards.task :task="$doneTask" />
+                                <x-cards.task :task="$doneTask" boardStatus="done" />
                             </div>
                         @endforeach
                     </div>
@@ -89,6 +89,7 @@
             @include('components.modals.create-task')
             @if (auth()->user()->roleName == 'admin')
                 @include('components.modals.editable-detail-task')
+                @include('components.modals.delete-task-alert')
             @else
                 @include('components.modals.detail-task')
             @endif

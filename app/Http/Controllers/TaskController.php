@@ -40,6 +40,7 @@ class TaskController extends Controller
             $this->taskService->delete($id);
             return redirect()->route('home')->with('success', 'Task deleted successfully.');
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             return redirect()->back()->with('failed', 'Something when wrong.');
         }
     }

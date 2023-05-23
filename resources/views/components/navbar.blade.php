@@ -11,7 +11,7 @@
                 <span class="navbar-toggler-icon"></span>
             @else
                 <div class="circular--portrait">
-                    <img src="{{ asset('images/profile.jpg') }}" />
+                    <img src="{{ asset('images/profile.png') }}" />
                 </div>
             @endif
         </button>

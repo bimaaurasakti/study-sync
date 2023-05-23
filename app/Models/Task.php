@@ -88,7 +88,7 @@ class Task extends Model
         return $now->diffInHours($dueDate, false);
     }
 
-    public function getCardClassAttribute()
+    public function getCardStatusTypeAttribute()
     {
         $now = Carbon::now();
         $dueDate = Carbon::parse($this->due_date);
@@ -99,7 +99,7 @@ class Task extends Model
         } elseif ($diffInHours < 96) {
             return 'warning';
         } else {
-            return '';
+            return 'none';
         }
     }
 }

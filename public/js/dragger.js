@@ -22,12 +22,17 @@ $(document).ready(function() {
     lists.on('dragend', function(event) {
         event.preventDefault()
 
-        let taskId = lastDraggedCard.find('.card').data('id');
+        let card = lastDraggedCard.find('.card')
+        let taskId = card.data('id');
         let activityStatusId = $(this).data('container-status-id');
         let form = $('#updateTaskStatus')
+
         form.find('#activityStatusId').val(activityStatusId)
-        
-        console.log(form.find('#activityStatusId').val())
+        if (activityStatusId == 3) {
+            changeCardOnDone(card)
+        } else {
+            changeCardOnNotDone(card)
+        }
 
         $.ajax({
             url: "/activities/" + taskId,   
@@ -63,5 +68,40 @@ $(document).ready(function() {
         card.on('dragend', function() {
             card.removeClass('dragging');
         });
+    }
+
+    function changeCardOnDone(card) {
+        let classList = card.attr("class").split(/\s+/)
+        let lateIcon = card.find('.bi-x-circle')
+        let warningIcon = card.find('.bi-exclamation-triangle')
+
+        card.removeClass(classList)
+        classList[1] = 'none'
+        card.addClass(classList)
+
+        lateIcon.addClass('d-none')
+        warningIcon.addClass('d-none')
+    }
+
+    function changeCardOnNotDone(card) {
+        let classList = card.attr("class").split(/\s+/)
+        let lateIcon = card.find('.bi-x-circle')
+        let warningIcon = card.find('.bi-exclamation-triangle')
+        let cardStatusType = card.data('card-status-type')
+
+        card.removeClass(classList)
+        classList[1] = cardStatusType
+        card.addClass(classList)
+
+        if (cardStatusType == 'danger') {
+            lateIcon.removeClass('d-none')
+            warningIcon.addClass('d-none')
+        } else if (cardStatusType == 'warning') {
+            lateIcon.addClass('d-none')
+            warningIcon.removeClass('d-none')
+        } else {
+            lateIcon.addClass('d-none')
+            warningIcon.addClass('d-none')
+        }
     }
 })

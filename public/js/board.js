@@ -4,6 +4,7 @@ $(document).ready(function() {
     var taskEditButton = $('.card .btn.edit')
     var buttonDropdownSubject = $('.btn-input-subject button.dropdown-item')
     var buttonDeleteTask = $('.button-delete-task')
+    var deleteTaskAlertModal = $('#deleteTaskAlert')
 
     taskCard.click(function() {
         var taskId = $(this).data('id')
@@ -68,6 +69,18 @@ $(document).ready(function() {
     })
 
     buttonDeleteTask.click(function(event) {
-        event.stopPropagation()
+        event.preventDefault()
+        event.stopPropagation() 
+
+        let taskCard = $(this).closest('.card')
+        let taskId = taskCard.data('id')
+        let taskTitle = taskCard.find('.card-title').text()
+        let alertTaskTitle = deleteTaskAlertModal.find('#alertTaskTItle')
+        let form = deleteTaskAlertModal.find('form')
+        let urlObject = new URL(form.attr('action'))
+       
+        urlObject.pathname = urlObject.pathname.replace(urlObject.pathname, '/tasks/' + taskId);
+        form.attr('action', urlObject.href)
+        alertTaskTitle.text(taskTitle)
     })
 });
