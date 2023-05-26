@@ -13,8 +13,6 @@ class Task extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
      */
     protected $fillable = [
         'subject_id',
@@ -25,8 +23,6 @@ class Task extends Model
 
     /**
      * The relationships that should always be loaded.
-     *
-     * @var array
      */
     protected $with = [
         'subject',
