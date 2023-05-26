@@ -4,9 +4,9 @@
 <div class="container px-3 py-1 px-md-5 text-center text-lg-start my-5">
     <div class="row gx-lg-5 align-items-center mb-5">
       <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-            <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+            <h1 class="navbar-logo my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
                 Ace Your Assignments<br />
-            <span style="color: #4EA8DE">with StudySync!</span>
+                <span style="color: #4EA8DE">with <span class="l">Study</span><span class="r">Sync!</span></span>
             </h1>
             <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
                 Are you tired of the overwhelming chaos that often accompanies homework assignments? 
@@ -39,7 +39,7 @@
                         <div class="form-outline mb-4">
                             <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email"/>
                             <label class="form-label" for="email">{{ __('Email Address') }}</label>
-                            @error('name')
+                            @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
